@@ -17,11 +17,11 @@
     },
     "start": {
       "commandName": "Project",
-      "launchUrl": "http://localhost:5000",
+      "launchUrl": "http://localhost:5005",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "http://localhost:5000"
+      "applicationUrl": "http://localhost:5005"
     }
   }
 }

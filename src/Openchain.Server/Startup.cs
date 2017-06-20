@@ -34,6 +34,7 @@ namespace Openchain.Server
 
         public Startup(IHostingEnvironment application)
         {
+            
             // Setup Configuration
             configuration = new ConfigurationBuilder()
                 .SetBasePath(application.ContentRootPath)
