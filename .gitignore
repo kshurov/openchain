@@ -161,3 +161,4 @@ $RECYCLE.BIN/
 # Other files
 /ColorExplorer/ColorExplorer.Web/App_Data/version.txt
 /tools/Openchain.SqlServer.Schema/Openchain.SqlServer.Schema.jfm
+/.vs

@@ -59,7 +59,7 @@ namespace Openchain.Server
                 .FromLogContext()
                 .WriteTo
                 .RollingFile("Logs\\openchain_{Hour}.log")
-                .CreateLogger());
+                .CreateLogger()); 
 
             services.AddSingleton<IConfiguration>(_ => this.configuration);
 
