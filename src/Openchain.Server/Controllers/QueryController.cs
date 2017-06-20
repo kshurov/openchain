@@ -123,8 +123,7 @@ namespace Openchain.Server.Controllers
             [FromQuery(Name = "account")]
             string account)
         {
-            LedgerPath path;
-            if (!LedgerPath.TryParse(account, out path))
+            if (!LedgerPath.TryParse(account, out LedgerPath path))
                 return BadRequest();
 
             LedgerPath directory = LedgerPath.FromSegments(path.Segments.ToArray());

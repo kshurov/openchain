@@ -2,8 +2,8 @@
   "enable_transaction_stream": true,
 
   "storage": {
-    "provider": "SQLite",
-    "path": "ledger.db"
+    "provider": "MSSQL",
+    "connection_string": "Server=db;Database=Openchain;Trusted_Connection=True;MultipleActiveResultSets=true"
   },
 
   // Define transaction validation parameters
