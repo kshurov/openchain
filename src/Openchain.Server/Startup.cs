@@ -22,6 +22,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Openchain.Infrastructure;
 using Openchain.Server.Models;
+using Serilog;
 
 namespace Openchain.Server
 {
@@ -53,7 +54,12 @@ namespace Openchain.Server
         /// <param name="services">The collection of services.</param>
         public async Task ConfigureServicesAsync(IServiceCollection services)
         {
-            services.BuildServiceProvider().GetService<ILoggerFactory>().AddConsole();
+            services.BuildServiceProvider().GetService<ILoggerFactory>().AddConsole().AddSerilog(new LoggerConfiguration()
+                .Enrich
+                .FromLogContext()
+                .WriteTo
+                .RollingFile("Logs\\openchain_{Hour}.log")
+                .CreateLogger());
 
             services.AddSingleton<IConfiguration>(_ => this.configuration);
 
@@ -64,9 +70,9 @@ namespace Openchain.Server
                 .AddJsonFormatters();
 
             // Logger
-            services.AddTransient<ILogger>(ConfigurationParser.CreateLogger);
+            services.AddTransient<Microsoft.Extensions.Logging.ILogger>(ConfigurationParser.CreateLogger);
 
-            LogStartup(services.BuildServiceProvider().GetService<ILogger>(), services.BuildServiceProvider().GetService<IHostingEnvironment>());
+            LogStartup(services.BuildServiceProvider().GetService<Microsoft.Extensions.Logging.ILogger>(), services.BuildServiceProvider().GetService<IHostingEnvironment>());
 
             // CORS Headers
             services.AddCors();
@@ -95,7 +101,7 @@ namespace Openchain.Server
             services.AddSingleton<LedgerAnchorWorker>(ConfigurationParser.CreateLedgerAnchorWorker);
         }
 
-        private static void LogStartup(ILogger logger, IHostingEnvironment environment)
+        private static void LogStartup(Microsoft.Extensions.Logging.ILogger logger, IHostingEnvironment environment)
         {
             logger.LogInformation($"Starting Openchain v{version}");
             logger.LogInformation(" ");
