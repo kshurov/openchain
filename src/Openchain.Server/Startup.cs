@@ -34,13 +34,14 @@ namespace Openchain.Server
 
         public Startup(IHostingEnvironment application)
         {
+            
             // Setup Configuration
             configuration = new ConfigurationBuilder()
                 .SetBasePath(application.ContentRootPath)
                 .AddJsonFile("data/config.json")
                 .AddUserSecrets("Openchain.Server")
                 .AddEnvironmentVariables()
-                .Build();            
+                .Build();
         }
 
         public void ConfigureServices(IServiceCollection services)
@@ -58,8 +59,8 @@ namespace Openchain.Server
                 .Enrich
                 .FromLogContext()
                 .WriteTo
-                .RollingFile("Logs\\openchain_{Date}.log")
-                .CreateLogger());
+                .RollingFile("Logs\\openchain_{Hour}.log")
+                .CreateLogger()); 
 
             services.AddSingleton<IConfiguration>(_ => this.configuration);
 

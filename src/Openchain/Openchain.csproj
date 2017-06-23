@@ -7,7 +7,6 @@
     <OutputType>Exe</OutputType>
     <PackageId>Openchain</PackageId>
     <RuntimeFrameworkVersion>1.1.1</RuntimeFrameworkVersion>
-    <UserSecretsId>ad8a491a-bfbe-4050-a22b-171d6d258025</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

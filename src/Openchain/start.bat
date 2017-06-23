@@ -1,0 +1,1 @@
+dotnet exec bin\Debug\netcoreapp1.1\Openchain.dll

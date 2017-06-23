@@ -77,11 +77,11 @@ namespace Openchain
             if (hexValue.Length % 2 == 1)
                 throw new FormatException("The hexValue parameter must have an even number of digits.");
 
-            var length = hexValue.Length >> 1;
+            var length = hexValue.Length;
 
-            byte[] result = new byte[length];
+            byte[] result = new byte[length >> 1];
 
-            for (int i = 0; i < length; ++i)
+            for (int i = 0; i < result.Length; ++i)
                 result[i] = (byte)((GetHexValue(hexValue[i << 1]) << 4) + (GetHexValue(hexValue[(i << 1) + 1])));
 
             return new ByteString(result);
